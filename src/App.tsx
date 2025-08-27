@@ -52,7 +52,7 @@ function App() {
   const formHandlers: Function[] = [
     (formValues: PersonalInfoField) => dispatch(setPersonalInfo(formValues)),
     ({ id, period }: { id: string, period?: 'on' }) => dispatch(setPlan({ id: parseInt(id), isYearly: period !== undefined })),
-    ({ addons }: { addons: string[] | string }) => dispatch(setAddons([...addons].map(el => parseInt(el))))
+    ({ addons }: { addons?: string[] | string }) => dispatch(setAddons(addons ? [...addons].map(el => parseInt(el)) : []))
   ]
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
